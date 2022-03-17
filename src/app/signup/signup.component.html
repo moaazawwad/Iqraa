@@ -1,0 +1,39 @@
+<form [formGroup]='register' (ngSubmit)='signp()'>
+
+  <div class="flex justify-center items-center h-screen w-full bg-blue-400">
+    <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+
+      <div class="flex flex-col mb-4">
+        <label class="fw-bold" for="email">Email</label>
+        <input class="border py-2 px-3 text-grey-800" formControlName="email" type="text">
+      </div>
+      <div *ngIf="register.get('email')?.errors!=null&&
+      register.get('email')?.touched" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+        role="alert">
+        <p *ngIf="register.get('email')?.errors?.['required']">Email is Required</p>
+        <p *ngIf="register.get('email')?.errors?.['email']">Email Invalid</p>
+      </div>
+
+      <div class="flex flex-col mb-4">
+        <label class="fw-bold" for="password">password</label>
+        <input class="border py-2 px-3 text-grey-800" formControlName="password" type="password">
+      </div>
+
+      <div *ngIf="register.get('password')?.errors!=null&&
+      register.get('password')?.touched"
+        class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <p *ngIf="register.get('password')?.errors?.['required']">Password is Required</p>
+        <p *ngIf="register.get('password')?.errors?.['minlength']">Password Minlength is 5</p>
+        <p *ngIf="register.get('password')?.errors?.['maxlength']">Password Maxlength is 10</p>
+      </div>
+
+      <div class="flex ">
+        <button [disabled]="register.invalid"
+          class=" block bg-teal-400 hover:bg-teal-600 text-white uppercase text-lg mx-auto p-4 rounded  "> SignUp
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</form>

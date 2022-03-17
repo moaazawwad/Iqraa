@@ -1,0 +1,37 @@
+<form action="" [formGroup]="uploadPhoto" #f="ngForm" (ngSubmit)="addNewPhoto()">
+
+  <div class="mb-6 w-1/2 mx-auto">
+    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 ">title</label>
+    <input formControlName="title" type="text" id="title"
+      class="block p-4 w-full text-gray-900 bg-gray-300 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500">
+  </div>
+  <div class="mb-6  w-1/2 mx-auto">
+    <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 ">photo</label>
+    <input formControlName="photo" type="file" (change)="upload($event)" accept="*.png.jpg" id="photo"
+      class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+  </div>
+  <div>
+
+    <button type="submit"
+      class="  block bg-teal-400 hover:bg-teal-600 text-white uppercase text-lg mx-auto p-4 rounded">upload</button>
+  </div>
+</form>
+
+<section class="overflow-hidden text-gray-700 ">
+  <div class="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
+    <div class="flex flex-wrap -m-1 md:-m-2">
+      <div class="flex flex-wrap w-1/3" *ngFor="let item of allpic">
+        <div class="relative w-full p-1 md:p-2">
+          <button
+            class=" absolute bottom-3 left-24 opacity-50  hover:opacity-100 block bg-teal-400 hover:bg-teal-600 text-white uppercase text-lg p-2 rounded">
+            delete</button>
+          <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg" [src]="item.photoUrl"
+            alt="">
+
+        </div>
+        <h1 class="">{{item.title}} </h1>
+      </div>
+
+    </div>
+  </div>
+</section>
